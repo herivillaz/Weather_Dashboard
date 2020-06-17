@@ -1,4 +1,4 @@
-#cont {
+#cont, body {
     background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('https://openweathermap.org/themes/openweathermap/assets/img/new-history-forecast-bulk.png')
     center center;
     background-size: cover;
