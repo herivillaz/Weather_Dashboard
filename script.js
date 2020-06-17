@@ -61,12 +61,12 @@ $(document).ready(function () {
             // 3-5 days forecast
             var forecastRowTitle = $("<div>");
             forecastRowTitle.addClass("col-lg-12 forecast").css({"font-size": "30px", "color": "blue", "padding": "20px"});
-            forecastRowTitle.text(data.list[1].dt_txt.length + "-day Forecast:");
-
+            forecastRowTitle.text("5-day Forecast:");
+            // data.list[0].length +
             $("#fiveDayForecast").prepend(forecastRowTitle);
 
 
-            for ( var i = 1; i < data.list[1].dt_txt.length; i ++) {
+            for ( var i = 4; i < 40; i +=8) {
                 var forecastCol = $('<div class="card bg-info" style="width: 13rem;"></div>');
                 forecastCol.addClass("col-md-" + data.list[i].dt_txt.length);
                 var forIcon = $('<img src="http://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png" class="card-img-top" alt="..."></img>')
