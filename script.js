@@ -57,46 +57,29 @@ $(document).ready(function () {
             // $("#p7menubar > li:nth-child(9) > .trigger").attr("id","MyNewID");
 
 
-            // // putting data from AJAX to the forecast body
-            // location.text(data.location.name + ", " + data.location.country);
-            // var temp = $("<p>");
-            // temp.attr("id", "humid");
-            // temp.text("Temperature: " + data.current.temp_c + " C / " + data.current.temp_f + " F");
-            // $("#forecast").append(temp);
-            // var humid = $("<p>");
-            // humid.attr("id", "humid");
-            // humid.text("Humidity: " + data.current.humidity);
-            // $("#forecast").append(humid);
-            // var wind = $("<p>");
-            // wind.attr("id", "wind");
-            // wind.text("Wind Speed: " + data.current.wind_mph + " mph");
-            // $("#forecast").append(wind);
-            // var uv = $("<p>");
-            // uv.attr("id", "uv");
-            // uv.text("UV Index: " + data.current.uv);
-            // $("#forecast").append(uv);
+           
+            // 3-5 days forecast
+            var forecastRowTitle = $("<div>");
+            forecastRowTitle.addClass("col-lg-12 forecast").css({"font-size": "30px", "color": "blue", "padding": "20px"});
+            forecastRowTitle.text(data.list[1].dt_txt.length + "-day Forecast:");
 
-            // // 3-5 days forecast
-            // var forecastRowTitle = $("<div>");
-            // forecastRowTitle.addClass("col-lg-12 forecast").css({"font-size": "30px", "color": "blue", "padding": "20px"});
-            // forecastRowTitle.text(data.forecast.forecastday.length + "-day Forecast:");
-
-            // $("#fiveDayForecast").prepend(forecastRowTitle);
+            $("#fiveDayForecast").prepend(forecastRowTitle);
 
 
-            // for ( var i = 0; i < data.forecast.forecastday.length; i ++) {
-            //     var forecastCol = $("<div>");
-            //     forecastCol.addClass("col-md-" + data.forecast.forecastday.length);
-            //     var forecastP = $("<p>");
-            //     forecastP.text("Date: " + data.forecast.forecastday[i].date)
-            //     var forecastTC = $("<p>");
-            //     forecastTC.text("Temperature: " + data.forecast.forecastday[i].day.maxtemp_c + " C / " + data.forecast.forecastday[i].day.maxtemp_f + " F");
-            //     var forecastHum = $("<p>");
-            //     forecastHum.text("Humidity: " + data.forecast.forecastday[i].day.avghumidity);
-            //     forecastCol.append(forecastP, forecastTC, forecastHum);
-            //     // $("#forecastRow").append(forecastCol);
-            //     $("#fiveDayForecast").append(forecastCol);
-            // }
+            for ( var i = 1; i < data.list[1].dt_txt.length; i ++) {
+                var forecastCol = $('<div class="card bg-info" style="width: 13rem;"></div>');
+                forecastCol.addClass("col-md-" + data.list[i].dt_txt.length);
+                var forIcon = $('<img src="http://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png" class="card-img-top" alt="..."></img>')
+                var forecastP = $("<p>");
+                forecastP.text("Date: " + data.list[i].dt_txt);
+                var forecastTC = $("<p>");
+                forecastTC.text("Temperature: " + 'Min. ' + data.list[i].main.temp_min + 'º' + ' | Max. ' + data.list[i].main.temp_max + 'º');
+                var forecastHum = $("<p>");
+                forecastHum.text("Humidity: " + data.list[i].main.humidity + '%');
+                forecastCol.append(forIcon, forecastP, forecastTC, forecastHum);
+                // $("#forecastRow").append(forecastCol);
+                $("#fiveDayForecast").append(forecastCol);
+            }
         })
     }
 
