@@ -33,3 +33,38 @@
 p.card-text {
     font-weight: 600;
 }
+
+@media (max-width: 400px) {
+
+    body {
+        padding: 30px;
+        margin: 30px;
+        background-size: cover;
+        position: fixed;
+        background-repeat: no-repeat;
+        font-size: 10px;
+    }
+}
+@media (max-width: 800px) {
+
+    html, body {
+        padding: 10px;
+        margin: 10px;
+        background-size: cover;
+        position: fixed;
+        background-repeat: no-repeat;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 1000px) {
+
+    html, body {
+        padding: 10px;
+        margin: 10px;
+        background-size: cover;
+        position: fixed;
+        background-repeat: no-repeat;
+        font-size: 10px;
+    }
+}
