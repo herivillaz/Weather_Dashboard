@@ -5,7 +5,7 @@ Weather Dashboard
 
 ![Home Page](/Assets/AssetsReadme/homepage.png)
 
-### You can access here: [Day Planner](https://herivillaz.github.io/Day-Planner/)
+### You can access here: [Weather Dashboard](https://herivillaz.github.io/Weather_Dashboard/)
 
 This project was made taking in consideration the following requirements in Columbia Coding Boot Camp:
 
