@@ -40,7 +40,7 @@ $(document).ready(function () {
             $.get(uvUrl, function (uvData) {
                 console.log(uvData);
                 var uvIndex = uvData.value;
-                console.log(lat, lon);
+                console.log(lat, lon); //View Lat and Lon to get UV index
                 // Use jQuery to Print all my weather data to the DOM
                 var bootstrapCardEl = $('<div class="card bg-info" style="width: 16rem;"></div>');
                 var cardImgEl = $('<img src="http://openweathermap.org/img/wn/' + data.list[0].weather[0].icon + '@2x.png" class="card-img-top" alt="..."></img>');
