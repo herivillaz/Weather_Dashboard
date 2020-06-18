@@ -1,22 +1,20 @@
 $(document).ready(function () {
+    // Show current Date on the DOM
     $("#today").text(moment().format('LLL'));
 
     var InputUser = "";
-
+    // Clear Data for new Search
     function clear() {
         $("#forecast1").empty();
         $("#forecastRow").empty();
-        // $(".forecast").empty();
         $("#fiveDayForecast").empty();
         $("#search-value").val("");
-
     };
 
     function ajaxCall() {
-
+        // Get API key. 
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?appid=571d9f58c398657c20313ac4142d50fd&us&mode&units=imperial&q=" + InputUser;
-        // var queryURL = "https://api.openweathermap.org/data/2.5/forecast?appid=571d9f58c398657c20313ac4142d50fd&us&mode&q=" + InputUser;
-        // var queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=london&appid=571d9f58c398657c20313ac4142d50fd" + InputUser;
+        // var queryURL = "https://api.openweathermap.org/data/2.5/forecast?appid=571d9f58c398657c20313ac4142d50fd&us&mode&q=" + InputUser; // var queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=london&appid=571d9f58c398657c20313ac4142d50fd" + InputUser;
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -34,9 +32,10 @@ $(document).ready(function () {
                 list.text(data.city.name);
                 listHistory.prepend(list);
             }
-
+            // Get UV index 
             var lat = data.city.coord.lat;
             var lon = data.city.coord.lon;
+            // API for UV
             var uvUrl = 'https://api.openweathermap.org/data/2.5/uvi?appid=' + window.API_key + '&lat=' + lat + '&lon=' + lon;
             $.get(uvUrl, function (uvData) {
                 console.log(uvData);
@@ -53,36 +52,36 @@ $(document).ready(function () {
                 bootstrapCardEl.append(cardImgEl).append(cardBodyEl);
                 $("#forecast1").append(bootstrapCardEl);
                 // Loop thru and print the forecast days same way with for loop
-            })
-            // $("#p7menubar > li:nth-child(9) > .trigger").attr("id","MyNewID");
+            });
 
-
-           
             // 3-5 days forecast
             var forecastRowTitle = $("<div>");
-            forecastRowTitle.addClass("col-lg-12 forecast").css({"font-size": "30px", "color": "blue", "padding": "20px"});
+            forecastRowTitle.addClass("col-lg-12 forecast").css({ "font-size": "30px", "color": "blue", "padding": "20px" });
             forecastRowTitle.text("5-day Forecast:");
-            // data.list[0].length +
+
             $("#fiveDayForecast").prepend(forecastRowTitle);
-
-
-            for ( var i = 6; i < 40; i +=8) {
-                var forecastCol = $('<div class="card bg-info" style="width: 15rem;"></div>');
-                forecastCol.addClass("col-md-" + data.list[i].dt_txt.length);
-                var forIcon = $('<img src="http://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png" class="card-img-top" alt="..."></img>')
-                var forecastP = $("<p>");
-                forecastP.text("Date: " + data.list[i].dt_txt);
-                var forecastTC = $("<p>");
-                forecastTC.text("Temperature: " + 'Min. ' + data.list[i].main.temp_min + 'º' + ' | Max. ' + data.list[i].main.temp_max + 'º');
-                var forecastHum = $("<p>");
-                forecastHum.text("Humidity: " + data.list[i].main.humidity + '%');
-                forecastCol.append(forIcon, forecastP, forecastTC, forecastHum);
-                // $("#forecastRow").append(forecastCol);
-                $("#fiveDayForecast").append(forecastCol);
+            // Loop for 5 days Forecast
+            for (var i = 0; i < 40; i++) {
+                var daTe = data.list[i].dt_txt
+                // Print daily forecast at Noon as hour selected by instructor
+                if (daTe.includes("12:00:00")) {
+                    // console.log(true);
+                    // Print Weather cards to the DOM
+                    var forecastCol = $('<div class="card bg-info" style="width: 15rem;"></div>');
+                    forecastCol.addClass("col-md-" + data.list[i].dt_txt.length);
+                    var forIcon = $('<img src="http://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png" class="card-img-top" alt="..."></img>')
+                    var forecastP = $("<p>");
+                    forecastP.text("Date: " + data.list[i].dt_txt);
+                    var forecastTC = $('<p class="card-text">' + data.list[i].weather[0].main + '<br>' + 'Temperature: ' + data.list[i].main.temp + 'º avg.' + '<br>' + 'Wind Speed: ' + data.list[i].wind.speed + 'mph' + '</p>');
+                    var forecastHum = $("<p>");
+                    forecastHum.text("Humidity: " + data.list[i].main.humidity + '%');
+                    forecastCol.append(forIcon, forecastP, forecastTC, forecastHum);
+                    $("#fiveDayForecast").append(forecastCol);
+                }
             }
         })
     }
-
+// Search Button
     const searchElement = $("#search-button");
     searchElement.click(function () {
         InputUser = $("#search-value").val();
@@ -90,13 +89,11 @@ $(document).ready(function () {
 
     });
 
-
-
+// List Button to compare
     $("#cityList").on("click", ".list", function () {
         InputUser = $(this).attr("id");
         console.log(InputUser);
         clear();
         ajaxCall();
-
-    })
+    });
 });
