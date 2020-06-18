@@ -6,3 +6,9 @@
     
 
 }
+
+.card {
+   margin: auto;
+   font-size: 20px;
+   background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('https://images-na.ssl-images-amazon.com/images/I/61Y8wktqw7L._AC_SX466_.jpg');
+}

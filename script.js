@@ -66,7 +66,7 @@ $(document).ready(function () {
             $("#fiveDayForecast").prepend(forecastRowTitle);
 
 
-            for ( var i = 4; i < 40; i +=8) {
+            for ( var i = 6; i < 40; i +=8) {
                 var forecastCol = $('<div class="card bg-info" style="width: 15rem;"></div>');
                 forecastCol.addClass("col-md-" + data.list[i].dt_txt.length);
                 var forIcon = $('<img src="http://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '@2x.png" class="card-img-top" alt="..."></img>')
