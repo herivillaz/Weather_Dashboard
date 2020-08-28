@@ -7,6 +7,8 @@ Weather Dashboard
 
 ### You can access here: [Weather Dashboard](https://herivillaz.github.io/Weather_Dashboard/)
 
+![video](/Assets/AssetsReadme/video.gif)
+
 This project was made taking in consideration the following requirements in Columbia Coding Boot Camp:
 
 ## Acceptance Criteria
